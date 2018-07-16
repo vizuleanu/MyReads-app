@@ -10,7 +10,7 @@ const Title = (p) => {
 }
 
 Title.defaultProps = {
-    name: 'My Reads'
+    name: 'My Reads App'
 }
 
 Title.propTypes = {
