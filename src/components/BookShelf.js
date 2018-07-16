@@ -74,19 +74,15 @@ class BookShelf extends Component {
 
         return(
             <div className="list-books-content">
-                {books.length > 0 
-                ? 
-                    (<div>
-                        {listShelf.map((shelf, index) => (
-                            <ShelfOfBooks
-                                key={index} 
-                                title={shelf.name}
-                                books={shelf.books} 
-                                onShelfChange={this.onShelfChange}/>
-                        ))}
-                    </div>)
-                :
-                    (<div>searching</div>)
+                {books.length > 0  ? (<div>
+                                        {listShelf.map((shelf, index) => (
+                                        <ShelfOfBooks
+                                            key={index} 
+                                            title={shelf.name}
+                                            books={shelf.books} 
+                                            onShelfChange={this.onShelfChange}/>
+                                        ))}
+                                    </div>) : (<div>searching</div>)
                 }
             </div>
         )

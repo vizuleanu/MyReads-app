@@ -23,7 +23,7 @@ class Book extends Component {
                         <select 
                             onChange={e => onShelfChange(b, e.target.value)}
                             value={b.shelf ? b.shelf : ''}>
-                            <option value="none" disabled>Move to...</option>
+                            <option value="none" disabled>None</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>
@@ -32,7 +32,7 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{b.title ? b.title : null}</div>
-                <div className="book-authors">{b.authors ? b.authors.join(',') : null}</div>
+                <div className="book-authors">{b.authors ? b.authors : null}</div>
             </div>
         )
     }
