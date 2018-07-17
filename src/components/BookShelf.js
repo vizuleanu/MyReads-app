@@ -4,11 +4,9 @@ import * as BooksAPI from '../BooksAPI'
 import ShelfOfBooks from './ShelfOfBooks'
 
 class BookShelf extends Component {
-
     state = {
         books: []
     }
-
     componentDidMount() {
         BooksAPI.getAll().then(books => {
             this.setState({
@@ -18,16 +16,15 @@ class BookShelf extends Component {
     }
 
     onShelfChange = (book, shelf) => {
-        
         const id = book.id
         const displayedBooks = [...this.state.books]
         const updateIndex = displayedBooks.findIndex(book => book.id === id)
-        const updateBook = Object.assign({}, displayedBooks[updateIndex], {
+        const updateBook = Object.assign( {}, displayedBooks[updateIndex], {
             shelf: shelf
         });
 
         this.setState({
-            books: [...displayedBooks.slice(0, updateIndex), updateBook, 
+            books: [...displayedBooks.slice( 0, updateIndex), updateBook, 
             ...displayedBooks.slice(updateIndex + 1)]
         })
 
@@ -58,18 +55,9 @@ class BookShelf extends Component {
         })
         
         const listShelf = [
-            {
-                name: 'Currently Reading',
-                books : currentlyReading
-            },
-            {
-                name: 'Want To Read',
-                books : wantToRead
-            },
-            {
-                name: 'Read',
-                books : read
-            }
+            { name: 'Currently Reading', books : currentlyReading },
+            { name: 'Want To Read', books : wantToRead },
+            { name: 'Read', books : read }
         ]
 
         return(

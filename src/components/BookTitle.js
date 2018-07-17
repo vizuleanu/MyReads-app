@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const Title = (p) => {
+const BookTitle = (p) => {
     return(
         <div className="list-books-title">
             <h1>{p.name}</h1>
@@ -9,12 +9,12 @@ const Title = (p) => {
     )
 }
 
-Title.defaultProps = {
+BookTitle.defaultProps = {
     name: 'My Reads App'
 }
 
-Title.propTypes = {
+BookTitle.propTypes = {
     name: PropTypes.string.isRequired
 }
 
-export default Title
+export default BookTitle

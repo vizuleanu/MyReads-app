@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Title from './Title'
+import BookTitle from './BookTitle'
 import AddBook from './AddBook'
 import BookShelf from './BookShelf'
 
@@ -9,7 +9,7 @@ class ListOFBooks extends Component {
     render() {
         return(
             <div className="list-books">
-                <Title /> 
+                <BookTitle /> 
                 <AddBook />
                 <BookShelf />
             </div>
