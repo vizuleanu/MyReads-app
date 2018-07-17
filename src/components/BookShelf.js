@@ -19,7 +19,7 @@ class BookShelf extends Component {
         const id = book.id
         const displayedBooks = [...this.state.books]
         const updateIndex = displayedBooks.findIndex(book => book.id === id)
-        const updateBook = Object.assign( {}, displayedBooks[updateIndex], {
+        const updateBook = Object.assign({}, displayedBooks[updateIndex], {
             shelf: shelf
         });
 
@@ -27,12 +27,11 @@ class BookShelf extends Component {
             books: [...displayedBooks.slice( 0, updateIndex), updateBook, 
             ...displayedBooks.slice(updateIndex + 1)]
         })
-
         BooksAPI.update(book, shelf)
     }
 
     render() {
-        const { books } = this.state
+        const {books} = this.state
         
         let currentlyReading = [];
         let wantToRead = [];
@@ -55,9 +54,9 @@ class BookShelf extends Component {
         })
         
         const listShelf = [
-            { name: 'Currently Reading', books : currentlyReading },
-            { name: 'Want To Read', books : wantToRead },
-            { name: 'Read', books : read }
+            {name: 'Currently Reading', books : currentlyReading},
+            {name: 'Want To Read', books : wantToRead},
+            {name: 'Read', books : read}
         ]
 
         return(

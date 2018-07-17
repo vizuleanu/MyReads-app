@@ -8,30 +8,30 @@ class BookSearch extends Component {
 
     state = {
       books: [],
-      displayedBooks: []
+      currentBooks: []
     }
 
     componentDidMount() {
       BooksAPI.getAll()
         .then(books => {
-          const idBooks = books.map(book => ({ id: book.id,shelf: book.shelf }))
-          this.setState({ displayedBooks: idBooks })
+          const booksID = books.map(book => ({id: book.id,shelf: book.shelf}))
+          this.setState({currentBooks: booksID})
         })
     }
 
     onSearch = (e) => {
-      const eventValue = e.target.eventValue
+      const value = e.target.value
       
-      if(eventValue) {
-        BooksAPI.search(eventValue).then(books => {
+      if(value) {
+        BooksAPI.search(value).then(books => {
           if(!books || books.hasOwnProperty('error')) {
-            this.setState({ books: [] })
+            this.setState({books: []})
           } else {
-              this.setState({ books: books })
+              this.setState({books: books})
           }  
         })
       } else {
-        this.setState( { books: [] })
+        this.setState({books: []})
       }
     }
 
@@ -39,29 +39,27 @@ class BookSearch extends Component {
       const nBooks = []
       BooksAPI.update(book, shelf)
         .then(books => {
-          Object.keys(books)
-            .forEach(shelf => {
-              return books[shelf].map(id => ({ id: id, shelf: shelf}))
-              .forEach(book => {
+          Object.keys(books).forEach(shelf => {
+              return books[shelf].map(id => ({ id: id, shelf: shelf})).forEach(book => {
                 nBooks.push(book)
               })
             })
             return nBooks
         })
         .then(nBooks => {
-          this.setState({ displayedBooks: nBooks })
+          this.setState({ currentBooks: nBooks })
         })
     }
  
     render() {
-        const { books, displayedBooks } = this.state
-        let booksGrid
+        const { books, currentBooks } = this.state
+        let booksList
 
-        if (books.length > 0) {
-          booksGrid = books.map((book, index) => {
-            displayedBooks.forEach(cbook => {
-              if(cbook.id === book.id) {
-                book.shelf = cbook.shelf
+        if (books.length >= 1) {
+          booksList = books.map((book, index) => {
+            currentBooks.forEach(currentBook => {
+              if(currentBook.id === book.id) {
+                book.shelf = currentBook.shelf
               }
             })
 
@@ -74,7 +72,7 @@ class BookSearch extends Component {
             ) 
           })
         } else {
-          booksGrid = null
+          booksList = null
         }
 
         return(
@@ -90,7 +88,7 @@ class BookSearch extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-               {booksGrid}
+               {booksList}
               </ol>
             </div>
           </div>

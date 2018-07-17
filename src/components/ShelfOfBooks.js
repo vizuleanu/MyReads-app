@@ -30,4 +30,4 @@ ShelfOfBooks.propTypes = {
     onShelfChange: PropTypes.func.isRequired
 }
 
-export default ShelfOfBookss
+export default ShelfOfBooks
