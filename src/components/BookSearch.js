@@ -8,14 +8,14 @@ class BookSearch extends Component {
 
     state = {
       books: [],
-      currentBooks: []
+      displayedBooks: []
     }
 
     componentDidMount() {
       BooksAPI.getAll()
         .then(books => {
           const booksID = books.map(book => ({id: book.id,shelf: book.shelf}))
-          this.setState({currentBooks: booksID})
+          this.setState({displayedBooks: booksID})
         })
     }
 
@@ -47,17 +47,17 @@ class BookSearch extends Component {
             return nBooks
         })
         .then(nBooks => {
-          this.setState({ currentBooks: nBooks })
+          this.setState({displayedBooks: nBooks})
         })
     }
  
     render() {
-        const { books, currentBooks } = this.state
+        const {books, displayedBooks} = this.state
         let booksList
 
         if (books.length >= 1) {
           booksList = books.map((book, index) => {
-            currentBooks.forEach(currentBook => {
+            displayedBooks.forEach(currentBook => {
               if(currentBook.id === book.id) {
                 book.shelf = currentBook.shelf
               }

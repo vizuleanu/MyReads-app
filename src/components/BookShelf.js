@@ -8,11 +8,7 @@ class BookShelf extends Component {
         books: []
     }
     componentDidMount() {
-        BooksAPI.getAll().then(books => {
-            this.setState({
-                books: books
-            })
-        })
+        BooksAPI.getAll().then(books => {this.setState({books: books})})
     }
 
     onShelfChange = (book, shelf) => {
